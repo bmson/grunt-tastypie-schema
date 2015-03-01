@@ -1,0 +1,32 @@
+{
+  "name": "grunt-tastypie-schema",
+  "version": "0.1.12",
+  "description": "Crawls the Tastypie schema and exports as json",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": {
+    "name": "Baldvin Mar Smarason",
+    "email": "bmson@socialcode.com"
+  },
+  "keywords": [
+    "grunt",
+    "gruntplugin",
+    "tastypie",
+    "schema"
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": "0.10.x"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "request": "2.x.x",
+    "colors": "1.x.x"
+  },
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "load-grunt-tasks": "0.3.x"
+  }
+}
