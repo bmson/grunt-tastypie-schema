@@ -1,6 +1,6 @@
 {
   "name": "grunt-tastypie-schema",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Crawls the Tastypie schema and exports as json",
   "repository": {
     "type": "git",
@@ -12,11 +12,17 @@
   },
  "repository": {
     "type": "git",
-    "url": "git://github.com/grunt-tastypie-schema.git"
+    "url": "http://github.com/bmson/grunt-tastypie-schema.git"
   },
   "bugs": {
     "url": "https://github.com/bmson/grunt-tastypie-schema/issues"
   },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/node-task/task-write/blob/master/LICENSE"
+    }
+  ],
   "keywords": [
     "grunt",
     "gruntplugin",
@@ -27,7 +33,6 @@
   "engines": {
     "node": "0.10.x"
   },
-  "license": "MIT",
   "dependencies": {
     "request": "2.x.x",
     "colors": "1.x.x"
