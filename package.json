@@ -1,6 +1,6 @@
 {
   "name": "grunt-tastypie-schema",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Crawls the Tastypie schema and exports as json",
   "repository": {
     "type": "git",
@@ -9,6 +9,13 @@
   "author": {
     "name": "Baldvin Mar Smarason",
     "email": "bmson@socialcode.com"
+  },
+ "repository": {
+    "type": "git",
+    "url": "git://github.com/grunt-tastypie-schema.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bmson/grunt-tastypie-schema/issues"
   },
   "keywords": [
     "grunt",
