@@ -10,7 +10,7 @@
     "name": "Baldvin Mar Smarason",
     "email": "bmson@socialcode.com"
   },
- "repository": {
+  "repository": {
     "type": "git",
     "url": "http://github.com/bmson/grunt-tastypie-schema.git"
   },
