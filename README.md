@@ -1,18 +1,22 @@
-# grunt-tastypie-schema
+<img src="https://cloud.githubusercontent.com/assets/890821/6521108/f47b7c4c-c386-11e4-9faa-4f8e6350fd14.png" width="100" />
 
-Crawls the Tastypie schema and exports as json
+--
 
-## Install
+### Install
 
 ```
 npm install grunt-tastypie-schema --save-dev
 ```
 
-## tastypie-schema task
+--
+
+### tastypie-schema task
 
 Run this task with `grunt tastypie-schema`
 
 Files and options may be specified according to the grunt configuring tasks guide.
+
+--
 
 ### Login
 
@@ -33,6 +37,8 @@ Type: `Object`
 Parameters that will be sent to the login endpoint.
 ```
 
+--
+
 ### Options
 
 ###### keys
@@ -44,7 +50,9 @@ Default: `['fields', 'filtering', 'ordering']`
 List of values to read from the tastypie schema.
 ```
 
-## Usage Example
+--
+
+### Usage Example
 
 ```js
 module.exports = function (grunt) {
@@ -72,3 +80,8 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-tastypie-schema');
 };
+```
+
+--
+
+<a href="https://codeclimate.com/github/bmson/grunt-tastypie-schema"><img src="https://codeclimate.com/github/bmson/grunt-tastypie-schema/badges/gpa.svg" /></a>
