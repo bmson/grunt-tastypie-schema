@@ -11,7 +11,6 @@ module.exports = function(LOGIN) {
     // Require assets
     var REQUEST = GLOBAL.request || require('request'),
         EVENTS  = require('events');
-        COLORS  = require('colors');
 
     // Options
     var OPTIONS = {
@@ -28,21 +27,22 @@ module.exports = function(LOGIN) {
     };
 
     // Clear console
-    console.log('\033c');
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
 
     // Send login request or trigger success if login is not needed
-    OPTIONS.url ? REQUEST.post(OPTIONS, function(error, response, body) {
+    OPTIONS.url ? REQUEST.post(OPTIONS, function(error, response) {
 
         switch (response.statusCode) {
-            case 401:
-                console.log('Login: failed'.red.bold, '\n');
+        case 401:
+            process.stdout.write('Login: failed'.red.bold, '\n');
             break;
 
-            case 201:
-                console.log('Login: successful'.gray.bold.underline, '\n');
+        case 201:
+            process.stdout.write('Login: successful'.gray.bold.underline, '\n');
 
-                // Trigger success
-                setTimeout(EMITTER, 100, LISTENER);  
+            // Trigger success
+            setTimeout(EMITTER, 100, LISTENER);  
             break;
         }
 

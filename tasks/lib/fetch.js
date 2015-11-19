@@ -10,8 +10,7 @@ module.exports = function(URL) {
 
     // Require assets
     var REQUEST = GLOBAL.request || require('request'),
-        EVENTS  = require('events'),
-        COLORS  = require('colors');
+        EVENTS  = require('events');
 
     // Event listener
     var listener = new EVENTS.EventEmitter();
@@ -20,42 +19,42 @@ module.exports = function(URL) {
     REQUEST(URL, function (error, response, body) {
 
         switch (response.statusCode) {
-            case 200:
-                console.log('Success'.green.bold);
-                console.log(URL.gray, '\n');
+        case 200:
+            process.stdout.write('Success'.green.bold);
+            process.stdout.write(URL.gray, '\n');
 
-                // Trigger success
-                listener.emit('success', JSON.parse(body));
+            // Trigger success
+            listener.emit('success', JSON.parse(body));
             break;
 
-            case 408:
-                console.log('Timeout'.red.bold);
-                console.log(URL.gray, '\n');
+        case 408:
+            process.stdout.write('Timeout'.red.bold);
+            process.stdout.write(URL.gray, '\n');
             break;
 
-            case 401:
-                console.log('Unauthorized'.red.bold);
-                console.log(URL.gray, '\n');
+        case 401:
+            process.stdout.write('Unauthorized'.red.bold);
+            process.stdout.write(URL.gray, '\n');
             break;
 
-            case 500:
-                console.log('Internal Server Error'.red.bold);
-                console.log(URL.gray, '\n');
+        case 500:
+            process.stdout.write('Internal Server Error'.red.bold);
+            process.stdout.write(URL.gray, '\n');
             break;
 
-            case 502:
-                console.log('Bad Gateway'.gray.bold);
-                console.log(URL.gray, '\n');
+        case 502:
+            process.stdout.write('Bad Gateway'.gray.bold);
+            process.stdout.write(URL.gray, '\n');
             break;
 
-            case 504:
-                console.log('Timeout'.gray.bold);
-                console.log(URL.gray, '\n');
+        case 504:
+            process.stdout.write('Timeout'.gray.bold);
+            process.stdout.write(URL.gray, '\n');
             break;
 
-            default:
-                console.log(response.statusCode.toString().gray.bold);
-                console.log(URL.gray, '\n');
+        default:
+            process.stdout.write(response.statusCode.toString().gray.bold);
+            process.stdout.write(URL.gray, '\n');
             break;
         }
 

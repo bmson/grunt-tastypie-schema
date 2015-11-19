@@ -52,7 +52,7 @@ module.exports = function(URI, OPTIONS, CALLBACK) {
                 });
             }
 
-        };
+        }
 
         // Trigger emitter
         CALLBACK.emitter.emit('write');
