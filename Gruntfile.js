@@ -1,11 +1,7 @@
-/*
- * grunt-tastypie-schema
- * https://github.com/irish-cream/tree/grunt-plugins
- *
- * Copyright (c) 2015 SocialCode
- * Licensed under the MIT license.
- */
+// Global dependencies
+var loadGruntTasks = require('load-grunt-tasks')
 
+// Module definition
 module.exports = function (grunt) {
     'use strict';
 
@@ -34,10 +30,10 @@ module.exports = function (grunt) {
     });
 
     // Load all grunt tasks
-    require('load-grunt-tasks')(grunt);
+    loadGruntTasks(grunt);
     grunt.loadTasks('tasks');
 
-    // By default, lint and run all tests.
+    // Register task
     grunt.registerTask('default', ['tastypie_schema']);
 
 };

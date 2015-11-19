@@ -1,28 +1,15 @@
-/*
- * grunt-tastypie-schema
- * https://github.com/irish-cream/tree/grunt-plugins
- *
- * Copyright (c) 2015 SocialCode
- * Licensed under the MIT license.
- */
+// Global dependencies
+var Events  = require('events');
+var request = GLOBAL.request || require('request');
 
-module.exports = function(LOGIN) {
+// Module definition
+module.exports = function(login) {
 
-    // Require assets
-    var REQUEST = GLOBAL.request || require('request'),
-        EVENTS  = require('events');
-
-    // Options
-    var OPTIONS = {
-        url:  LOGIN.url,
-        json: LOGIN.params
-    };
-
-    // Event listener
-    var LISTENER = new EVENTS.EventEmitter();
+    // Event emitter
+    var eventEmitter = new Events.EventEmitter();
 
     // Emit success
-    var EMITTER = function(event) {
+    var emitter = function(event) {
         event.emit('success');
     };
 
@@ -30,25 +17,40 @@ module.exports = function(LOGIN) {
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
 
-    // Send login request or trigger success if login is not needed
-    OPTIONS.url ? REQUEST.post(OPTIONS, function(error, response) {
+    // Send login request or emit success if login is not needed
+    if (login.url) {
 
-        switch (response.statusCode) {
-        case 401:
-            process.stdout.write('Login: failed'.red.bold, '\n');
-            break;
+        // Request url
+        var promise = request.post({
+            url:  login.url,
+            json: login.params
+        });
 
-        case 201:
-            process.stdout.write('Login: successful'.gray.bold.underline, '\n');
+        // Request response
+        promise.on('response', function(error, response) {
 
-            // Trigger success
-            setTimeout(EMITTER, 100, LISTENER);  
-            break;
-        }
+            switch (response.statusCode) {
+            case 401:
+                process.stdout.write('Login: failed', '\n');
+                break;
 
-    }) : setTimeout(EMITTER, 100, LISTENER);
+            case 201:
+                process.stdout.write('Login: successful', '\n');
 
-    // Return LISTENER
-    return LISTENER;
+                // Trigger success
+                setTimeout(emitter, 100, eventEmitter);  
+                break;
+            }
+
+        });
+
+    } else {
+
+        setTimeout(emitter, 100, eventEmitter);
+
+    }
+
+    // Return emitter
+    return eventEmitter;
 
 };

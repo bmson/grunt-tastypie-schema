@@ -1,66 +1,59 @@
-/*
- * grunt-tastypie-schema
- * https://github.com/irish-cream/tree/grunt-plugins
- *
- * Copyright (c) 2015 SocialCode
- * Licensed under the MIT license.
- */
+// Global dependencies
+var Events  = require('events');
+var request = GLOBAL.request || require('request');
 
-module.exports = function(URL) {
+// Module definition
+module.exports = function(url) {
 
-    // Require assets
-    var REQUEST = GLOBAL.request || require('request'),
-        EVENTS  = require('events');
+    // Event emitter
+    var eventEmitter = new Events.EventEmitter();
 
-    // Event listener
-    var listener = new EVENTS.EventEmitter();
-
-    // Load URL
-    REQUEST(URL, function (error, response, body) {
+    // Request url
+    request(url, function(error, response, body) {
 
         switch (response.statusCode) {
         case 200:
-            process.stdout.write('Success'.green.bold);
-            process.stdout.write(URL.gray, '\n');
+            process.stdout.write('Success');
+            process.stdout.write(url, '\n');
 
-            // Trigger success
-            listener.emit('success', JSON.parse(body));
+            // Emit success
+            eventEmitter.emit('success', JSON.parse(body));
             break;
 
         case 408:
-            process.stdout.write('Timeout'.red.bold);
-            process.stdout.write(URL.gray, '\n');
+            process.stdout.write('Timeout');
+            process.stdout.write(url, '\n');
             break;
 
         case 401:
-            process.stdout.write('Unauthorized'.red.bold);
-            process.stdout.write(URL.gray, '\n');
+            process.stdout.write('Unauthorized');
+            process.stdout.write(url, '\n');
             break;
 
         case 500:
-            process.stdout.write('Internal Server Error'.red.bold);
-            process.stdout.write(URL.gray, '\n');
+            process.stdout.write('Internal Server Error');
+            process.stdout.write(url, '\n');
             break;
 
         case 502:
-            process.stdout.write('Bad Gateway'.gray.bold);
-            process.stdout.write(URL.gray, '\n');
+            process.stdout.write('Bad Gateway');
+            process.stdout.write(url, '\n');
             break;
 
         case 504:
-            process.stdout.write('Timeout'.gray.bold);
-            process.stdout.write(URL.gray, '\n');
+            process.stdout.write('Timeout');
+            process.stdout.write(url, '\n');
             break;
 
         default:
-            process.stdout.write(response.statusCode.toString().gray.bold);
-            process.stdout.write(URL.gray, '\n');
+            process.stdout.write(response.statusCode.toString());
+            process.stdout.write(url, '\n');
             break;
         }
 
     });
 
-    // Return listener
-    return listener;
+    // Return emitter
+    return eventEmitter;
 
 };

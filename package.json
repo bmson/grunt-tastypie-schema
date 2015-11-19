@@ -1,6 +1,6 @@
 {
   "name": "grunt-tastypie-schema",
-  "version": "0.1.14",
+  "version": "0.2.0",
   "description": "Crawls the Tastypie schema and exports as json",
   "author": {
     "name": "Baldvin Mar Smarason",

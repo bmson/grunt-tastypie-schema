@@ -1,59 +1,56 @@
-/*
- * grunt-tastypie-schema
- * https://github.com/irish-cream/tree/grunt-plugins
- *
- * Copyright (c) 2015 SocialCode
- * Licensed under the MIT license.
- */
+// Global dependencies
+var request = require('request');
 
-module.exports = function (GRUNT) {
+// Local dependencies
+var login  = require('./lib/login');
+var parser = require('./lib/parser');
+var save   = require('./lib/save');
 
-    // Require APP assets
-    var APP     = require('./lib/app'),
-        REQUEST = require('request');
+// Module definition
+module.exports = function(grunt) {
 
     // Add request to global scope with session cookie
-    GLOBAL.request = REQUEST.defaults({
+    GLOBAL.request = request.defaults({
         jar: true
     });
 
     // Create grunt task
-    GRUNT.registerMultiTask('tastypie_schema', 'Crawls the Tastypie schema and exports as json', function () {
+    grunt.registerMultiTask('tastypie_schema', 'Crawls the Tastypie schema and exports as json', function () {
 
-        // Run grunt asynchronously
+        // Run asynchronously
         this.async();
 
         // Options
-        var OPTIONS = this.options({
+        var options = this.options({
             keys: ['fields', 'filtering', 'ordering']
         });
 
+        // Files variables
+        var files = this.files;
+
         // Login credentials
-        var CREDENTIALS = {
+        var promise = login({
             url:    this.data.login && this.data.login.url,
             params: this.data.login && this.data.login.params
-        };
+        });
 
-        // Files variables
-        var FILES = this.files;
+        // Login success
+        promise.on('success', function() {
 
-        // Login
-        APP.login(CREDENTIALS).on('success', function() {
+            files.forEach(function(file) {
 
-            FILES.forEach(function(file) {
-
-                // Variables
-                var dest = file.orig.dest,
-                    src  = file.orig.src[0];
+                // Paths
+                var output = file.orig.dest;
+                var input  = file.orig.src[0];
 
                 // Parse URL
-                var parser  = APP.parser(src, OPTIONS),
-                    emitter = parser.emitter,
-                    json    = parser.json;
+                var pars    = parser(input, options);
+                var emitter = pars.emitter;
+                var json    = pars.json;
 
                 // Save to file when write is triggered
                 emitter.on('write', function() {
-                    APP.save(dest, json);
+                    save(output, json);
                 });
 
             });
