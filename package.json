@@ -2,10 +2,6 @@
   "name": "grunt-tastypie-schema",
   "version": "0.1.14",
   "description": "Crawls the Tastypie schema and exports as json",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
   "author": {
     "name": "Baldvin Mar Smarason",
     "email": "bmson@bmson.com"
@@ -20,7 +16,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://github.com/node-task/task-write/blob/master/LICENSE"
+      "url": "http://github.com/bmson/grunt-tastypie-schema/blob/master/LICENSE.md"
     }
   ],
   "keywords": [
@@ -30,15 +26,20 @@
     "schema"
   ],
   "main": "Gruntfile.js",
+  "scripts": {
+    "init": "eslint --init",
+    "test": "eslint ./tasks/**/*.js"
+  },
   "engines": {
     "node": "0.10.x"
   },
   "dependencies": {
-    "request": "2.x.x",
-    "colors": "1.x.x"
+    "request": "2.66.0",
+    "colors": "1.1.2"
   },
   "devDependencies": {
-    "grunt": "0.4.x",
-    "load-grunt-tasks": "0.3.x"
+    "grunt": "0.4.5",
+    "load-grunt-tasks": "3.3.0",
+    "eslint": "1.9.0"
   }
 }
