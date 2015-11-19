@@ -84,4 +84,7 @@ module.exports = function (grunt) {
 
 --
 
-<a href="https://codeclimate.com/github/bmson/grunt-tastypie-schema"><img src="https://codeclimate.com/github/bmson/grunt-tastypie-schema/badges/gpa.svg" /></a>
+[![Code Climate](https://img.shields.io/codeclimate/github/bmson/grunt-tastypie-schema.svg?style=flat-square)](https://codeclimate.com/github/bmson/grunt-tastypie-schema)
+[![Code Climate](https://img.shields.io/david/bmson/grunt-tastypie-schema.svg?style=flat-square)](https://david-dm.org/bmson/grunt-tastypie-schema/#info=dependencies)
+[![Code Climate](https://img.shields.io/david/dev/bmson/grunt-tastypie-schema.svg?style=flat-square)](https://david-dm.org/bmson/grunt-tastypie-schema/#info=devDependencies)
+[![Code Climate](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/bmson/grunt-tastypie-schema/blob/master/LICENSE.md)
